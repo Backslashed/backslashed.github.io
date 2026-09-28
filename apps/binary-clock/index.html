@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Binary O&#39;Clock — Backslashed</title>
+<meta name="description" content="The time in ones and zeros, full-screen on your Apple TV.">
+<link rel="canonical" href="https://www.backslashed.se/apps/binary-clock/">
+<link rel="stylesheet" href="/style.css">
+<link rel="alternate" type="application/rss+xml" title="Backslashed — blog" href="/blog/feed.xml">
+</head>
+<body>
+<header class="masthead">
+<a class="brand" href="/">Backslashed</a><nav aria-label="Main">
+<ul>
+<li><a href="/apps/" aria-current="page">Apps</a></li>
+<li><a href="/blog/">Blog</a></li>
+</ul>
+</nav>
+</header>
+<main id="content">
+<h1>Binary O&#39;Clock</h1>
+<p>There are only 10 types of people in this world: those who understand binary, and those
+who don’t.</p>
+<p>Binary O’Clock turns your TV into a wall of glowing blue lights that tells the time (hours,
+minutes and seconds) in binary. I made the first version back in 2016, and it’s been
+quietly ticking away ever since. Version 2.0 is a complete rewrite in SwiftUI that looks
+exactly the way it always has.</p>
+<figure><img src="/apps/binary-clock/binaryclock-01-clock-960.png" srcset="/apps/binary-clock/binaryclock-01-clock-480.png 480w, /apps/binary-clock/binaryclock-01-clock-960.png 960w, /apps/binary-clock/binaryclock-01-clock-1440.png 1440w, /apps/binary-clock/binaryclock-01-clock.png 3840w" sizes="(max-width: 760px) 100vw, 620px" width="3840" height="2160" alt="Binary O’Clock at 10:48:36" loading="lazy" decoding="async"></figure>
+<p class="appstore"><a class="appstore-link" href="https://apps.apple.com/app/id1166356115" rel="noopener noreferrer">Download on the App Store</a></p>
+<h2 id="reading-it">Reading it<a class="permalink" href="#reading-it" aria-label="Permalink to “Reading it”">#</a></h2>
+<p>Each column is one digit of the time: HH MM SS. Read a column from the bottom up. The lights
+are worth 1, 2, 4 and 8, so add up the ones that are lit and you have the digit. Some
+columns are shorter because they never need the bigger numbers: the first hour digit never
+goes above 2, and the first minute and second digits never go above 5.</p>
+<p>The clock above says 10:48:36:</p>
+<div class="table-scroll">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>H</th>
+<th>H</th>
+<th>M</th>
+<th>M</th>
+<th>S</th>
+<th>S</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>8</strong></td>
+<td></td>
+<td>○</td>
+<td></td>
+<td>●</td>
+<td></td>
+<td>○</td>
+</tr>
+<tr>
+<td><strong>4</strong></td>
+<td></td>
+<td>○</td>
+<td>●</td>
+<td>○</td>
+<td>○</td>
+<td>●</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>●</td>
+<td>●</td>
+</tr>
+<tr>
+<td><strong>1</strong></td>
+<td>●</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>●</td>
+<td>○</td>
+</tr>
+<tr>
+<td><strong>=</strong></td>
+<td>1</td>
+<td>0</td>
+<td>4</td>
+<td>8</td>
+<td>3</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>It’s the same time as on the app icon, and has been since 2016.</p>
+<h2 id="what-s-here">What’s here<a class="permalink" href="#what-s-here" aria-label="Permalink to “What’s here”">#</a></h2>
+<ul>
+<li><p>A full-screen 24-hour clock with hours, minutes and seconds</p>
+</li>
+<li><p>Ticks exactly on the second</p>
+</li>
+<li><p>Keeps the screen saver away for as long as it’s showing</p>
+</li>
+<li><p>Sharp on 4K TVs</p>
+</li>
+</ul>
+<h2 id="privacy">Privacy<a class="permalink" href="#privacy" aria-label="Permalink to “Privacy”">#</a></h2>
+<p>Binary O’Clock collects nothing. It has no analytics, tracking, advertising identifier or
+account.</p>
+<p>It doesn’t connect to the internet. All it does is read the time from the Apple TV it’s
+running on.</p>
+<h2 id="support">Support<a class="permalink" href="#support" aria-label="Permalink to “Support”">#</a></h2>
+<p>Mail <a href="mailto:support@backslashed.se">support@backslashed.se</a> and I’ll get back to you.</p>
+<p>It helps to know which Apple TV model and tvOS version you have, and what the clock showed
+compared with the actual time.</p>
+</main>
+<footer class="site-footer">
+<p>[NSManagedObjectContext _thereIsNoSadnessLikeTheDeathOfOptimism]</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,395 @@
+/* Backslashed — one stylesheet, no framework, no JavaScript.
+   Edited by hand; the generator copies it through verbatim, so changes here need no rebuild
+   of the tool itself.
+
+   Follows the Brutalist Web Design guidelines (brutalist-web.design): links are underlined,
+   nothing that isn't a link or a button responds to a click, and decoration has to justify
+   itself against readability. Rounded corners kept losing that argument, so there are none. */
+
+:root {
+    color-scheme: light dark;
+
+    --bg:        light-dark(#fdfdfc, #16161a);
+    --text:      light-dark(#1a1a1a, #e4e4e6);
+    --muted:     light-dark(#666663, #9b9ba3);
+    --accent:    light-dark(#0b57c4, #8ab4ff);
+    --rule:      light-dark(#e3e3e0, #2c2c34);
+    --code-bg:   light-dark(#f4f4f1, #1e1e25);
+    --mark:      light-dark(#fff6cc, #3a3520);
+
+    /* Three roles, all of them fonts the OS already has — a web font would be decoration
+       billed to the visitor's connection.
+
+       Body is a serif for the same reason books are: at a 66ch measure it's the easier
+       read. The chrome — headings, nav, dates, listings, footer — is monospaced, which is
+       where the terminal voice belongs.
+
+       Running text deliberately isn't: mono prose is a slower read at article length, and
+       it would cost `pre` its distinction. A code block reads as code because it breaks
+       the rhythm of the prose around it. Set the prose in mono too and the only thing
+       left saying "this is code" is the grey background.
+
+       To try it anyway: point --font-body at --font-mono and raise the body line-height
+       to about 1.75, since mono needs more leading to breathe. */
+    --font-body:   ui-serif, Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+    --font-mono:   ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Cascadia Mono", "Liberation Mono", monospace;
+    --font-chrome: var(--font-mono);
+
+    /* Syntax highlighting. Classes are emitted at build time by swift-syntax. */
+    --hl-keyword:   light-dark(#9425a0, #c792ea);
+    --hl-type:      light-dark(#0a7ea4, #7fd6e8);
+    --hl-string:    light-dark(#3f8b3d, #b9dd90);
+    --hl-number:    light-dark(#a35a00, #f0a072);
+    --hl-comment:   light-dark(#8a8a8a, #767683);
+    --hl-attribute: light-dark(#9a6b00, #e5c07b);
+    --hl-directive: light-dark(#9a6b00, #e5c07b);
+    --hl-operator:  light-dark(#555552, #b6b6be);
+
+    --measure: 66ch;
+}
+
+/* Honour an OS request for more contrast: flatten the greys back towards the text
+   colour rather than leaving muted text muted. */
+@media (prefers-contrast: more) {
+    :root {
+        --text:    light-dark(#000000, #ffffff);
+        --muted:   light-dark(#3a3a38, #c9c9d1);
+        --accent:  light-dark(#00369e, #b3ccff);
+        --rule:    light-dark(#9a9a96, #6a6a76);
+    }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+    max-width: var(--measure);
+    background: var(--bg);
+    color: var(--text);
+    font: 1.0625rem/1.7 var(--font-body);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+}
+
+/* ---- Masthead + nav ---------------------------------------------------- */
+
+.masthead {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    padding-bottom: 1rem;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid var(--rule);
+}
+
+/* The one link on the site that isn't underlined. A wordmark in the top-left corner is
+   the most-understood affordance on the web, and underlining it reads as a typo. */
+.brand {
+    font-family: var(--font-chrome);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text);
+    text-decoration: none;
+}
+
+.masthead nav ul {
+    display: flex;
+    flex-wrap: wrap;      /* the entire responsive nav strategy */
+    gap: 0 1.1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Underlined, like every other link. These used to be muted grey with the underline
+   removed, which left colour alone to say "clickable" — and the low-contrast colour
+   at that. */
+.masthead nav a {
+    font-family: var(--font-chrome);
+    font-size: 0.95rem;
+    color: var(--text);
+}
+
+.masthead nav a[aria-current="page"] {
+    font-weight: 700;
+}
+
+/* ---- Typography -------------------------------------------------------- */
+
+/* Monospaced headings over a serif body. The change of voice marks structure on its own,
+   so the sizes can stay close together and still read as a hierarchy.
+
+   No negative tracking: a monospaced face is drawn on a fixed advance and tightening it
+   fights the design of the font instead of helping it. */
+h1, h2, h3, h4 {
+    font-family: var(--font-chrome);
+    line-height: 1.3;
+    margin: 2.25rem 0 0.75rem;
+    text-wrap: balance;
+}
+
+/* A shade smaller than the sans sizes they replace — mono sets wider per character, so
+   matching the old sizes would push long titles onto a third line. */
+h1 { font-size: 1.65rem; margin-top: 0; }
+h2 { font-size: 1.3rem; }
+h3 { font-size: 1.1rem; }
+
+p, ul, ol, blockquote, figure, pre, table { margin: 0 0 1.15rem; }
+
+a { color: var(--accent); text-underline-offset: 0.15em; }
+
+/* Deep link to any section. Always visible — revealing it on hover would hide it from
+   every touch device, which is most of them. */
+.permalink {
+    margin-left: 0.4em;
+    font-weight: 400;
+    color: var(--muted);
+    text-decoration: none;
+}
+
+.permalink:hover, .permalink:focus-visible {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
+
+blockquote {
+    margin-left: 0;
+    padding-left: 1.1rem;
+    border-left: 3px solid var(--rule);
+    color: var(--muted);
+}
+
+mark { background: var(--mark); color: inherit; }
+
+.page-date, .post-date {
+    display: block;
+    font-family: var(--font-chrome);
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.page-date { margin-top: -0.4rem; }
+
+/* ---- Asides (`> Note: …`) ---------------------------------------------- */
+
+.aside {
+    margin: 1.5rem 0;
+    padding: 0.9rem 1.1rem;
+    border-left: 3px solid var(--accent);
+    background: var(--code-bg);
+}
+
+.aside > :last-child { margin-bottom: 0; }
+
+.aside-label {
+    margin: 0 0 0.35rem;
+    font-family: var(--font-chrome);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+/* ---- Code -------------------------------------------------------------- */
+
+code, pre {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+}
+
+code {
+    background: var(--code-bg);
+    padding: 0.15em 0.35em;
+}
+
+pre {
+    background: var(--code-bg);
+    padding: 1rem 1.1rem;
+    overflow-x: auto;      /* long lines scroll, the page never does */
+}
+
+pre code {
+    background: none;
+    padding: 0;
+}
+/* Enigma ciphertext on the home page: five-letter groups in a paragraph, so it wraps on its
+   own. Monospaced, so every group is the same width and they line up in columns. */
+.cipher {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+}
+
+/* The message arrives like a teleprinter printing it: group by group, once, on load, then it
+   sits still. Each group is numbered in the markup (`--i`), since CSS has no sibling index
+   that works everywhere yet. Hidden groups still take their space, so nothing reflows as the
+   message prints. */
+.cipher span {
+    animation: print 1ms calc(var(--i) * 60ms) both;
+}
+
+/* No fade: a printed character is either there or it isn't. */
+@keyframes print {
+    from { visibility: hidden; }
+    to   { visibility: visible; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cipher span { animation: none; }
+}
+
+/* The key it was sent with, as fine print: there for anyone who looks, easy to miss. */
+.cipher-key {
+    font-family: var(--font-chrome);
+    font-size: 0.7rem;
+    color: var(--muted);
+    opacity: 0.75;
+}
+
+.hl-keyword   { color: var(--hl-keyword); }
+.hl-type      { color: var(--hl-type); }
+.hl-string    { color: var(--hl-string); }
+.hl-number    { color: var(--hl-number); }
+.hl-comment   { color: var(--hl-comment); font-style: italic; }
+.hl-attribute { color: var(--hl-attribute); }
+.hl-directive { color: var(--hl-directive); }
+.hl-operator  { color: var(--hl-operator); }
+
+/* ---- Images and galleries ---------------------------------------------- */
+
+img {
+    max-width: 100%;
+    height: auto;          /* pairs with the intrinsic width/height attributes */
+}
+
+figure { margin-inline: 0; }
+
+figcaption {
+    margin-top: 0.5rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+figcaption > :last-child { margin-bottom: 0; }
+
+/* A thumbnail links to the full-size original. That is the whole lightbox. */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(var(--gallery-columns, 3), 1fr);
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+}
+
+.gallery img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+}
+
+/* Says what the full-size original weighs, before the visitor pays for it. */
+.gallery-size {
+    display: block;
+    margin-top: 0.3rem;
+    font-family: var(--font-chrome);
+    font-size: 0.75rem;
+    color: var(--muted);
+}
+
+@media (max-width: 34rem) {
+    .gallery { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---- Tables ------------------------------------------------------------ */
+
+.table-scroll { overflow-x: auto; margin-bottom: 1.15rem; }
+
+table { border-collapse: collapse; width: 100%; }
+
+th, td {
+    padding: 0.45rem 0.7rem;
+    border-bottom: 1px solid var(--rule);
+    text-align: left;
+}
+
+th { font-weight: 600; }
+
+/* ---- Listings ---------------------------------------------------------- */
+
+.post-list, .child-list {
+    list-style: none;
+    padding: 0;
+}
+
+.post-list > li, .child-list > li {
+    padding-bottom: 1.1rem;
+    margin-bottom: 1.1rem;
+    border-bottom: 1px solid var(--rule);
+}
+
+.post-list > li:last-child, .child-list > li:last-child {
+    border-bottom: 0;
+}
+
+.post-list > li > a, .child-list > li > a {
+    font-family: var(--font-chrome);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.post-summary, .child-summary {
+    margin: 0.3rem 0 0;
+    color: var(--muted);
+}
+
+/* These used to be pills: a rounded, filled chip that read as pressable, where only the
+   word inside was actually a link and the count beside it wasn't. Now the link looks like
+   a link and the count looks like text, because that is what they are. */
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.1rem;
+    padding: 0;
+    margin-top: 2rem;
+    font-family: var(--font-chrome);
+    font-size: 0.9rem;
+    list-style: none;
+}
+
+.tag-list li {
+    display: flex;
+    gap: 0.35rem;
+    align-items: baseline;
+}
+
+.tag-count { color: var(--muted); font-size: 0.8rem; }
+
+/* ---- App Store link ---------------------------------------------------- */
+
+/* Not a button. It navigates to the App Store; it doesn't submit anything. */
+.appstore-link {
+    font-family: var(--font-chrome);
+    font-weight: 600;
+}
+
+/* ---- Footer ------------------------------------------------------------ */
+
+.site-footer {
+    margin-top: 4rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--rule);
+    font-family: var(--font-chrome);
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+/* The footer is one long Objective-C selector with no spaces to wrap at. On the narrowest
+   phones it has to break somewhere rather than push the page sideways. */
+.site-footer p { margin: 0; overflow-wrap: anywhere; }

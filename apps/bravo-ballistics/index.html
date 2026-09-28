@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bravo Ballistics — Backslashed</title>
+<meta name="description" content="A field-grade exterior ballistics solver — 3-DOF point-mass integration with the corrections that actually matter.">
+<link rel="canonical" href="https://www.backslashed.se/apps/bravo-ballistics/">
+<link rel="stylesheet" href="/style.css">
+<link rel="alternate" type="application/rss+xml" title="Backslashed — blog" href="/blog/feed.xml">
+</head>
+<body>
+<header class="masthead">
+<a class="brand" href="/">Backslashed</a><nav aria-label="Main">
+<ul>
+<li><a href="/apps/" aria-current="page">Apps</a></li>
+<li><a href="/blog/">Blog</a></li>
+</ul>
+</nav>
+</header>
+<main id="content">
+<h1>Bravo Ballistics</h1>
+<p>A ballistics calculator that does the physics properly and then gets out of the way.</p>
+<p>Under the interface is a dependency-free solver: a 3-DOF point-mass trajectory integrated
+with Runge–Kutta, plus the empirical corrections that separate a toy from a field tool —
+spin drift, aerodynamic jump, Coriolis, line-of-sight angle, and powder-temperature muzzle
+velocity shift. Drag is modelled against G1, G2, G5, G6, G7, G8 and RA4.</p>
+<p>The solver emits true physical angles and signs. A separate layer translates those into
+what you actually dial: come-ups, turret units, and your scope’s tracking. That
+translation is pinned by tests rather than by comments, because sign conventions are where
+this kind of software quietly goes wrong.</p>
+<h2 id="built-to-be-read-outdoors">Built to be read outdoors<a class="permalink" href="#built-to-be-read-outdoors" aria-label="Permalink to “Built to be read outdoors”">#</a></h2>
+<p>Theming is app-owned rather than following the system switch — Dark, Light and Desert —
+because the right contrast on a range in flat noon light is not the one your phone picks
+for you.</p>
+<h2 id="privacy">Privacy<a class="permalink" href="#privacy" aria-label="Permalink to “Privacy”">#</a></h2>
+<p>Bravo Ballistics collects nothing. No analytics, no tracking, no advertising identifier,
+no account.</p>
+<p>Your rifle profiles, loads and environmental data are stored on the device. Nothing is
+uploaded, because there is no server to upload it to.</p>
+<h2 id="support">Support<a class="permalink" href="#support" aria-label="Permalink to “Support”">#</a></h2>
+<p>Mail <a href="mailto:support@backslashed.se">support@backslashed.se</a> and I’ll answer.</p>
+<p>If a solution looks wrong, the fastest path to a fix is the full input set: bullet BC and
+model, muzzle velocity, sight height, zero range, and the atmospheric conditions you
+entered. Include what you expected and what the app gave you.</p>
+</main>
+<footer class="site-footer">
+<p>[NSManagedObjectContext _thereIsNoSadnessLikeTheDeathOfOptimism]</p>
+</footer>
+</body>
+</html>

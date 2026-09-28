@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bravo Timer — Backslashed</title>
+<meta name="description" content="A shot timer that listens — live-microphone shot detection with DSP tuned against real recordings.">
+<link rel="canonical" href="https://www.backslashed.se/apps/bravo-timer/">
+<link rel="stylesheet" href="/style.css">
+<link rel="alternate" type="application/rss+xml" title="Backslashed — blog" href="/blog/feed.xml">
+</head>
+<body>
+<header class="masthead">
+<a class="brand" href="/">Backslashed</a><nav aria-label="Main">
+<ul>
+<li><a href="/apps/" aria-current="page">Apps</a></li>
+<li><a href="/blog/">Blog</a></li>
+</ul>
+</nav>
+</header>
+<main id="content">
+<h1>Bravo Timer</h1>
+<p>A shot timer driven by what it hears.</p>
+<p>The detector is real signal processing rather than a volume threshold: a pure-DSP core
+that consumes audio chunks and emits timestamped shot events, with an AVAudioEngine front
+end feeding it live from the microphone. The core is offline-testable, and it was tuned
+against actual range recordings using a command-line harness built for the purpose — which
+is the only honest way to know whether a detector works.</p>
+<h2 id="privacy">Privacy<a class="permalink" href="#privacy" aria-label="Permalink to “Privacy”">#</a></h2>
+<p>Bravo Timer collects nothing. No analytics, no tracking, no advertising identifier, no
+account.</p>
+<p>The app needs microphone access to detect shots. Audio is processed on the device, in
+memory, purely to find shot events — it is not recorded, not stored, and not transmitted.
+Your timing sessions stay on the device.</p>
+<h2 id="support">Support<a class="permalink" href="#support" aria-label="Permalink to “Support”">#</a></h2>
+<p>Mail <a href="mailto:support@backslashed.se">support@backslashed.se</a> and I’ll answer.</p>
+<p>If shots are being missed or double-counted, tell me the firearm, the rough distance from
+the phone, and whether you were under a covered firing line — reverberation is usually the
+culprit.</p>
+</main>
+<footer class="site-footer">
+<p>[NSManagedObjectContext _thereIsNoSadnessLikeTheDeathOfOptimism]</p>
+</footer>
+</body>
+</html>
